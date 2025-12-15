@@ -28,8 +28,6 @@ There are two main steps to getting this to run:
 
 ### Build
 Run the build.sh script. This will download numerous sources, apply patches and build all the various binaries.
-```
-```
 
 ```
 ./build.sh 
@@ -43,9 +41,7 @@ Run the load_firmware.sh script. Once started, press and hold down the screen on
 ```
 
 You should see activity as follows:
-```
 
-```
 ```
 [+] jump command: 0x6a425355
 [+] jump command le: 0x6a425355
