@@ -27,21 +27,22 @@ git clone https://github.com/ajb142/omap_loader.git
 
 echo "[I] - Cross compiling x-loader."
 cd x-loader/x-loader
-make ARCH=arm CROSS_COMPILE=arm-none-linux-gnueabi- distclean
+cp -vR ../../../mods_x-loader/tools/* ./tools
+#make ARCH=arm CROSS_COMPILE=arm-none-linux-gnueabi- distclean
 make ARCH=arm CROSS_COMPILE=arm-none-linux-gnueabi- j49-usb-loader_config
 make ARCH=arm CROSS_COMPILE=arm-none-linux-gnueabi-
 cd ../..
 if [ ! -f x-loader/x-loader/x-load.bin ]
     then
         echo "[E] - Error, x-loader compile failed."
-        exit
+        return 1
     fi
 
 echo "[I] - Cross compiling u-boot."
 pwd
 cd NestDFUAttack-master/Dev/u-boot
-cp ../../../../mods_u-boot/* ./
-make ARCH=arm CROSS_COMPILE=arm-none-linux-gnueabi- distclean
+cp -vR ../../../../mods_u-boot/* ./
+#make ARCH=arm CROSS_COMPILE=arm-none-linux-gnueabi- distclean
 make ARCH=arm CROSS_COMPILE=arm-none-linux-gnueabi- diamond
 make ARCH=arm CROSS_COMPILE=arm-none-linux-gnueabi-
 cd ../../..
@@ -49,7 +50,7 @@ cd ../../..
 if [ ! -f NestDFUAttack-master/Dev/u-boot/u-boot.bin ]
     then
         echo "[E] - Error, u-boot compile failed."
-        exit
+        return 1
     fi
 
 echo "[I] - Cross compiling Linux (this could take a few minutes.)"
@@ -62,7 +63,8 @@ cd ../../..
 if [ ! -f NestDFUAttack-master/Dev/linux/arch/arm/boot/uImage ]
     then
         echo "[E] - Error, Linux kernel compile failed."
-        exit
+        #exit
+        return 1
     fi
 
 echo "[I] - Compiling omap_loader for host machine."

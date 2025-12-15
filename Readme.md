@@ -12,14 +12,40 @@ The following issues have been resolved:
  - build issues with u-boot.
  - build issues with linux.
 
+## Prerequisites
+Ensure you have installed the following:
+
+```
+make
+mkimage (via uboot-tools)
+gcc 
+```
+
+The following build script was tested using ``` gcc version 15.2.1 20251112 (GCC)```, most modern gcc compilers will work. Issues with compiling x-loader were due to old compiler incompatibility.
+
 ## Usage
 There are two main steps to getting this to run:
 
 ### Build
 Run the build.sh script. This will download numerous sources, apply patches and build all the various binaries.
+```
+```
+
+```
+./build.sh 
+```
 
 ### Run the exploit
-Run the ./load_firmware.sh script. Once started, press and hold down the screen on the nest for approx 10s. You should see activity as follows:
+Run the load_firmware.sh script. Once started, press and hold down the screen on the nest for approx 10s. 
+
+```
+./load_firmware.sh
+```
+
+You should see activity as follows:
+```
+
+```
 ```
 [+] jump command: 0x6a425355
 [+] jump command le: 0x6a425355
